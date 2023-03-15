@@ -9,6 +9,7 @@ const addProduct = () => {
 
     console.log(product,quantity);
     disPlayProduct(product,quantity);
+    saveProductToLocalStorage(product,quantity);
 }
 
 const disPlayProduct = (product,quantity) => {
@@ -30,5 +31,14 @@ const getStoredShoppingCart = () => {
 
 // saving new product and it's quantity
 const saveProductToLocalStorage = (product,quantity) => {
+    const cart = getStoredShoppingCart();
+    cart[product] = quantity ;
+    const cartStringified = JSON.stringify(cart);
+    localStorage.setItem('cart',cartStringified);
+}
+
+// display saved localStorage data
+
+const disPlayProductsFromLocalStorage = () => {
     
 }
