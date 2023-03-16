@@ -17,9 +17,10 @@ const disPlayProduct = (product,quantity) => {
     const li = document.createElement("li");
     li.innerText = `${product}: ${quantity}`;
     ul.appendChild(li);
-}   
-// checking weather a value in local Storage or not
+}  
 
+
+// checking weather a value in local Storage or not
 const getStoredShoppingCart = () => {
     const storedCart = localStorage.getItem('cart');
     let cart = {};
@@ -33,6 +34,7 @@ const getStoredShoppingCart = () => {
 const saveProductToLocalStorage = (product,quantity) => {
     const cart = getStoredShoppingCart();
     cart[product] = quantity ;
+    // console.log(cart);
     const cartStringified = JSON.stringify(cart);
     localStorage.setItem('cart',cartStringified);
 }
@@ -40,5 +42,14 @@ const saveProductToLocalStorage = (product,quantity) => {
 // display saved localStorage data
 
 const disPlayProductsFromLocalStorage = () => {
-    
+    const savedCart = getStoredShoppingCart();
+
+    console.log(savedCart);
+    for(const product in savedCart) {
+        const quantity = savedCart[product];
+        console.log(product,quantity);
+        disPlayProduct(product,quantity);
+    }
 }
+
+disPlayProductsFromLocalStorage();  
